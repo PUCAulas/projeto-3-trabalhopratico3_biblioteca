@@ -3,10 +3,11 @@ package biblioteca;
 public class Usuario {
 
     private int id = 0;
+    private static int proxID = 0;
     private String nome;
 
-    public Usuario(int id, String nome) {
-        this.id = id;
+    public Usuario(String nome) {
+        this.id = proxID++;
         this.nome = nome;
     }
 

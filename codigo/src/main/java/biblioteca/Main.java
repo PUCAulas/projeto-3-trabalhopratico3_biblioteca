@@ -2,10 +2,9 @@ package biblioteca;
 
 import java.util.*;
 
-public class main {
-
+public class Main {
     public static void main(String[] args) {
-        Biblioteca biblioteca = new Biblioteca();
+        Biblioteca biblioteca;
 
         Scanner sc = new Scanner(System.in);
 
