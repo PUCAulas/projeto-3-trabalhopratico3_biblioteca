@@ -1,6 +1,6 @@
 package biblioteca;
 
-public class Usuario {
+public abstract class Usuario implements Itens{
 
     private int id = 0;
     private static int proxID = 0;

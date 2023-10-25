@@ -1,6 +1,6 @@
 package biblioteca;
 
-public class Livro extends Item implements Itens {
+public abstract class Livro extends Item implements Itens {
     public Livro(String titulo, String autor, int ano, boolean emprestavel, int quantidade) {
         super(titulo, autor, ano, emprestavel, quantidade);
     }

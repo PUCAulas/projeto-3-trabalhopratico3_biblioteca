@@ -1,7 +1,7 @@
 package biblioteca;
 
 public interface Itens {
-    pegarItem();
+    public void pegarItem();
 
-    devolverItem();
+    public void devolverItem();
 }
