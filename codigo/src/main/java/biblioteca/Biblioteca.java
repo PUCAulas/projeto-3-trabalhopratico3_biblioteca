@@ -32,7 +32,7 @@ public class Biblioteca {
         adicionarUsuario(novoUsuario);
     }
 
-    public boolean emprestarItem(String titulo, String nomeUsuario) {
+    public boolean emprestarItem(String titulo, String nomeUsuario) throws Exception {
         Item item = itens.get(titulo);
         Usuario usuario = usuarios.get(nomeUsuario);
         if (item != null && usuario != null && item instanceof Emprestavel && item.disponivel && usuario.podeEmprestar()) {
@@ -41,8 +41,9 @@ public class Biblioteca {
             usuario.emprestimos.add(item);
             return true;
         }
-        return false;
+        throw new Exception("O item não está disponível para empréstimo.");
     }
+    
 
     public boolean devolverItem(String titulo, String nomeUsuario) throws Exception {
         Item item = itens.get(titulo);
@@ -54,6 +55,7 @@ public class Biblioteca {
         }
         throw new Exception("Não foi possível devolver o item.");
     }
+    
 
     public List<Item> listarItens() {
         List<Item> listaItens = new ArrayList<>(itens.values());

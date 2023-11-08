@@ -6,16 +6,16 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Biblioteca biblioteca = new Biblioteca();
-        biblioteca.popularBiblioteca();
+        //biblioteca.popularBiblioteca();
 
         while (true) {
             try {
-                System.out.println("1. Adicionar livro");
-                System.out.println("2. Remover livro");
-                System.out.println("3. Editar livro");
-                System.out.println("4. Adicionar usuário");
-                System.out.println("5. Remover usuário");
-                System.out.println("6. Editar usuário");
+                System.out.println("1. Adicionar usuário");
+                System.out.println("2. Remover usuário");
+                System.out.println("3. Editar usuário");
+                System.out.println("4. Adicionar livro");
+                System.out.println("5. Remover livro");
+                System.out.println("6. Editar livro");
                 System.out.println("7. Emprestar livro");
                 System.out.println("8. Devolver livro");
                 System.out.println("9. Listar itens");
@@ -30,7 +30,32 @@ public class Main {
                 //scanner.nextLine();  // Consumir a nova linha
 
                 switch (opcao) {
-                    case 1:
+
+                     case 1:
+                     scanner = new Scanner(System.in);
+                        System.out.println("Digite o nome do usuário:");
+                        String nome = scanner.nextLine();
+                        System.out.println("Digite o nome do usuário:");
+                        int cpf = scanner.nextInt();
+                        biblioteca.adicionarUsuario(new Usuario(nome, cpf));
+                        break;
+                    case 2:
+                     scanner = new Scanner(System.in); 
+                        System.out.println("Digite o nome do usuário:");
+                        nome = scanner.nextLine();
+                        biblioteca.removerUsuario(nome);
+                        break;
+                    case 3:
+                     scanner = new Scanner(System.in);
+                        System.out.println("Digite o nome do usuário:");
+                        nome = scanner.nextLine();
+                        System.out.println("Digite o novo nome do usuário:");
+                        String novoNome = scanner.nextLine();
+                         System.out.println("Digite o nome do usuário:");
+                        cpf = scanner.nextInt();
+                        biblioteca.editarUsuario(nome, new Usuario(novoNome, cpf));
+                        break;
+                    case 4:
                     scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         String titulo = scanner.nextLine();
@@ -41,13 +66,13 @@ public class Main {
                         scanner.nextLine();  // Consumir a nova linha
                         biblioteca.adicionarItem(new Livro(titulo, autor, ano));
                         break;
-                    case 2:
+                    case 5:
                      scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
                         biblioteca.removerItem(titulo);
                         break;
-                    case 3:
+                    case 6:
                      scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
@@ -60,30 +85,7 @@ public class Main {
                         scanner.nextLine();  // Consumir a nova linha
                         biblioteca.editarItem(titulo, new Livro(novoTitulo, novoAutor, novoAno));
                         break;
-                    case 4:
-                     scanner = new Scanner(System.in);
-                        System.out.println("Digite o nome do usuário:");
-                        String nome = scanner.nextLine();
-                        System.out.println("Digite o nome do usuário:");
-                        int cpf = scanner.nextInt();
-                        biblioteca.adicionarUsuario(new Usuario(nome, cpf));
-                        break;
-                    case 5:
-                     scanner = new Scanner(System.in);
-                        System.out.println("Digite o nome do usuário:");
-                        nome = scanner.nextLine();
-                        biblioteca.removerUsuario(nome);
-                        break;
-                    case 6:
-                     scanner = new Scanner(System.in);
-                        System.out.println("Digite o nome do usuário:");
-                        nome = scanner.nextLine();
-                        System.out.println("Digite o novo nome do usuário:");
-                        String novoNome = scanner.nextLine();
-                         System.out.println("Digite o nome do usuário:");
-                        cpf = scanner.nextInt();
-                        biblioteca.editarUsuario(nome, new Usuario(novoNome, cpf));
-                        break;
+                   
                     case 7:
                      scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
