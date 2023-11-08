@@ -1,14 +1,14 @@
 package biblioteca;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public abstract class Usuario implements Itens{
 
+class Usuario {
     private int id = 0;
     private static int proxID = 0;
-    private String nome;
-    private int cpf;
-    private ArrayList<Livro> livrosEmprestados = new ArrayList<>();
+    public int cpf;
+    public String nome;
+    List<Item> emprestimos = new ArrayList<>();
 
     public Usuario(String nome, int cpf) {
         this.id = proxID++;
@@ -16,7 +16,7 @@ public abstract class Usuario implements Itens{
         this.cpf = cpf;
     }
 
-    public int getId() {
+     public int getId() {
         return id;
     }
 
@@ -40,20 +40,7 @@ public abstract class Usuario implements Itens{
         this.cpf = cpf;
     }
 
-    public ArrayList<Livro> getLivrosEmprestados() {
-        return livrosEmprestados;
+    public boolean podeEmprestar() {
+        return emprestimos.size() < 3;
     }
-
-    public void setLivrosEmprestados(ArrayList<Livro> livrosEmprestados) {
-        this.livrosEmprestados = livrosEmprestados;
-    }
-
-    public void adicionarLivroEmprestado(Livro livro) {
-        livrosEmprestados.add(livro);
-    }
-
-    public void removerLivroEmprestado(Livro livro) {
-        livrosEmprestados.remove(livro);
-    }
-
 }
