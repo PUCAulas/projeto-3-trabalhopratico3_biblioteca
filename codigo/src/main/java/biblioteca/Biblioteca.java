@@ -32,41 +32,27 @@ public class Biblioteca {
         adicionarUsuario(novoUsuario);
     }
 
-    public void emprestarItem(String titulo, String nomeUsuario) throws EmprestimoException {
+    public boolean emprestarItem(String titulo, String nomeUsuario) {
         Item item = itens.get(titulo);
         Usuario usuario = usuarios.get(nomeUsuario);
-        if (item == null) {
-            throw new EmprestimoException("Item não encontrado.");
-        } else if (usuario == null) {
-            throw new EmprestimoException("Usuário não encontrado.");
-        } else if (!(item instanceof Emprestavel)) {
-            throw new EmprestimoException("Este item não pode ser emprestado.");
-        } else if (!item.disponivel) {
-            throw new EmprestimoException("Este item já está emprestado.");
-        } else if (!usuario.podeEmprestar()) {
-            throw new EmprestimoException("O usuário já atingiu o limite de empréstimos.");
-        } else {
+        if (item != null && usuario != null && item instanceof Emprestavel && item.disponivel && usuario.podeEmprestar()) {
             item.disponivel = false;
             item.vezesEmprestado++;
             usuario.emprestimos.add(item);
+            return true;
         }
+        return false;
     }
 
     public boolean devolverItem(String titulo, String nomeUsuario) throws Exception {
         Item item = itens.get(titulo);
         Usuario usuario = usuarios.get(nomeUsuario);
-        if (item == null) {
-            throw new Exception("Item não encontrado na biblioteca.");
+        if (item != null && usuario != null && usuario.emprestimos.contains(item)) {
+            item.disponivel = true;
+            usuario.emprestimos.remove(item);
+            return true;
         }
-        if (usuario == null) {
-            throw new Exception("Usuário não encontrado.");
-        }
-        if (!usuario.emprestimos.contains(item)) {
-            throw new Exception("Este usuário não emprestou este item.");
-        }
-        item.disponivel = true;
-        usuario.emprestimos.remove(item);
-        return true;
+        throw new Exception("Não foi possível devolver o item.");
     }
 
     public List<Item> listarItens() {
