@@ -4,76 +4,141 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Biblioteca biblioteca;
-
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        Biblioteca biblioteca = new Biblioteca();
+        biblioteca.popularBiblioteca();
 
         while (true) {
-            System.out.println("1. Adicionar item");
-            System.out.println("2. Adicionar usuário");
-            System.out.println("3. Pegar item");
-            System.out.println("4. Devolver item");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
-            int opcao = sc.nextInt();
-            sc.nextLine(); // Consume newline left-over
+            try {
+                System.out.println("1. Adicionar livro");
+                System.out.println("2. Remover livro");
+                System.out.println("3. Editar livro");
+                System.out.println("4. Adicionar usuário");
+                System.out.println("5. Remover usuário");
+                System.out.println("6. Editar usuário");
+                System.out.println("7. Emprestar livro");
+                System.out.println("8. Devolver livro");
+                System.out.println("9. Listar itens");
+                System.out.println("10. Listar usuários");
+                System.out.println("11. Pesquisar itens");
+                System.out.println("12. Emitir relatório por item");
+                System.out.println("13. Emitir relatório por usuário");
+                // Adicione mais opções conforme necessário
+                System.out.println("Escolha uma opção:");
+                int opcao = scanner.nextInt();
+                scanner.nextLine();  // Consumir a nova linha
 
-            switch (opcao) {
-                case 1:
-                    sc = new Scanner(System.in);
-                    System.out.print("Digite o título do item: ");
-                    String titulo = sc.nextLine();
-                    System.out.print("Digite o autor do item: ");
-                    String autor = sc.nextLine();
-                    System.out.print("Digite o ano do item: ");
-                    int ano = sc.nextInt();
-                    sc.nextLine(); // Consume newline left-over
-                    Item item = new Livro(titulo, autor, ano, true, 3);
-                    biblioteca.adicionarItem(item);
-                    break;
-                case 2:
-                    sc = new Scanner(System.in);
-                    System.out.print("Digite o nome do usuário: ");
-                    String nome = sc.nextLine();
-                    Usuario usuario = new Usuario(nome);
-                    biblioteca.adicionarUsuario(usuario);
-                    break;
-                case 3:
-                    sc = new Scanner(System.in);
-                    System.out.print("Digite o nome do usuário: ");
-                    nome = sc.nextLine();
-                    System.out.print("Digite o título do item: ");
-                    titulo = sc.nextLine();
-                    usuario = biblioteca.getUsuario(nome);
-                    item = biblioteca.getItem(titulo);
-                    if (usuario != null && item != null) {
-                        usuario.pegarItem(item);
-                    } else {
-                        System.out.println("Usuário ou item não encontrado.");
-                    }
-                    break;
-                case 4:
-                    sc = new Scanner(System.in);
-                    System.out.print("Digite o nome do usuário: ");
-                    nome = sc.nextLine();
-                    System.out.print("Digite o título do item: ");
-                    titulo = sc.nextLine();
-                    usuario = biblioteca.getUsuario(nome);
-                    item = biblioteca.getItem(titulo);
-                    if (usuario != null && item != null) {
-                        usuario.devolverItem(item);
-                    } else {
-                        System.out.println("Usuário ou item não encontrado.");
-                    }
-                    break;
-                case 5:
-                    System.out.println("Saindo...");
-                    sc.close();
-                    return;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                switch (opcao) {
+                    case 1:
+                        System.out.println("Digite o título do livro:");
+                        String titulo = scanner.nextLine();
+                        System.out.println("Digite o autor do livro:");
+                        String autor = scanner.nextLine();
+                        System.out.println("Digite o ano do livro:");
+                        int ano = scanner.nextInt();
+                        scanner.nextLine();  // Consumir a nova linha
+                        biblioteca.adicionarItem(new Livro(titulo, autor, ano));
+                        break;
+                    case 2:
+                        System.out.println("Digite o título do livro:");
+                        titulo = scanner.nextLine();
+                        biblioteca.removerItem(titulo);
+                        break;
+                    case 3:
+                        System.out.println("Digite o título do livro:");
+                        titulo = scanner.nextLine();
+                        System.out.println("Digite o novo título do livro:");
+                        String novoTitulo = scanner.nextLine();
+                        System.out.println("Digite o novo autor do livro:");
+                        String novoAutor = scanner.nextLine();
+                        System.out.println("Digite o novo ano do livro:");
+                        int novoAno = scanner.nextInt();
+                        scanner.nextLine();  // Consumir a nova linha
+                        biblioteca.editarItem(titulo, new Livro(novoTitulo, novoAutor, novoAno));
+                        break;
+                    case 4:
+                        System.out.println("Digite o nome do usuário:");
+                        String nome = scanner.nextLine();
+                        System.out.println("Digite o nome do usuário:");
+                        int cpf = scanner.nextInt();
+                        biblioteca.adicionarUsuario(new Usuario(nome, cpf));
+                        break;
+                    case 5:
+                        System.out.println("Digite o nome do usuário:");
+                        nome = scanner.nextLine();
+                        biblioteca.removerUsuario(nome);
+                        break;
+                    case 6:
+                        System.out.println("Digite o nome do usuário:");
+                        nome = scanner.nextLine();
+                        System.out.println("Digite o novo nome do usuário:");
+                        String novoNome = scanner.nextLine();
+                         System.out.println("Digite o nome do usuário:");
+                        cpf = scanner.nextInt();
+                        biblioteca.editarUsuario(nome, new Usuario(novoNome, cpf));
+                        break;
+                    case 7:
+                        System.out.println("Digite o título do livro:");
+                        titulo = scanner.nextLine();
+                        System.out.println("Digite o nome do usuário:");
+                        String nomeUsuario = scanner.nextLine();
+                        if (biblioteca.emprestarItem(titulo, nomeUsuario)) {
+                            System.out.println("Livro emprestado com sucesso!");
+                        } else {
+                            System.out.println("Não foi possível emprestar o livro.");
+                        }
+                        break;
+                    case 8:
+                        System.out.println("Digite o título do livro:");
+                        titulo = scanner.nextLine();
+                        System.out.println("Digite o nome do usuário:");
+                        nomeUsuario = scanner.nextLine();
+                        if (biblioteca.devolverItem(titulo, nomeUsuario)) {
+                            System.out.println("Livro devolvido com sucesso!");
+                        } else {
+                            System.out.println("Não foi possível devolver o livro.");
+                        }
+                        break;
+                    case 9:
+                        List<Item> listaItens = biblioteca.listarItens();
+                        for (Item item : listaItens) {
+                            System.out.println(item.titulo + " - " + item.autor + " - " + item.ano);
+                        }
+                        break;
+                    case 10:
+                        List<Usuario> listaUsuarios = biblioteca.listarUsuarios();
+                        for (Usuario usuario : listaUsuarios) {
+                            System.out.println(usuario.nome);
+                        }
+                        break;
+                    case 11:
+                        System.out.println("Digite o termo de pesquisa:");
+                        String termo = scanner.nextLine();
+                        System.out.println("Digite o tipo de pesquisa (titulo, autor, ano, tipo):");
+                        String tipoPesquisa = scanner.nextLine();
+                        List<Item> resultados = biblioteca.pesquisarItens(termo, tipoPesquisa);
+                        for (Item item : resultados) {
+                            System.out.println(item.titulo + " - " + item.autor + " - " + item.ano);
+                        }
+                        break;
+                    case 12:
+                        biblioteca.emitirRelatorioPorItem();
+                        break;
+                    case 13:
+                        System.out.println("Digite o nome do usuário:");
+                        nomeUsuario = scanner.nextLine();
+                        biblioteca.emitirRelatorioPorUsuario(nomeUsuario);
+                        break;
+                    default:
+                        System.out.println("Opção inválida. Por favor, tente novamente.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, tente novamente.");
+                scanner.nextLine();  // Consumir a nova linha
+            } catch (EmprestimoException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
-
 }
