@@ -60,7 +60,7 @@ public class Main {
                     case 4:
                         scanner = new Scanner(System.in);
                         System.out.println(
-                                "Selecione qual tipo de livro deseja cadastrar: (1 - Livro, 2 - Tese, 3 - Revista, 4 - CD, 5 - DVD)");
+                                "Selecione qual tipo de item deseja cadastrar: (1 - Livro, 2 - Tese, 3 - Revista, 4 - CD, 5 - DVD)");
                         int selecaoTipo = scanner.nextInt();
                         switch (selecaoTipo) {
                             case 1:
@@ -121,7 +121,7 @@ public class Main {
                         break;
                     case 5:
                         scanner = new Scanner(System.in);
-                        System.out.println("Digite o título do livro:");
+                        System.out.println("Digite o título do item:");
                         titulo = scanner.nextLine();
                         biblioteca.removerItem(titulo);
                         break;
