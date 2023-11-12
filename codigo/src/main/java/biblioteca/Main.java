@@ -37,7 +37,7 @@ public class Main {
                         scanner = new Scanner(System.in);
                         System.out.println("Digite o nome do usuário:");
                         String nome = scanner.nextLine();
-                        System.out.println("Digite o nome do usuário:");
+                        System.out.println("Digite o cpf do usuário:");
                         int cpf = scanner.nextInt();
                         biblioteca.adicionarUsuario(new Usuario(nome, cpf));
                         break;
@@ -53,7 +53,7 @@ public class Main {
                         nome = scanner.nextLine();
                         System.out.println("Digite o novo nome do usuário:");
                         String novoNome = scanner.nextLine();
-                        System.out.println("Digite o nome do usuário:");
+                        System.out.println("Digite o cpf do usuário:");
                         cpf = scanner.nextInt();
                         biblioteca.editarUsuario(nome, new Usuario(novoNome, cpf));
                         break;
