@@ -33,5 +33,3 @@ PASSO A PASSO
 15. **Sair**: Selecione a opção 'Sair' no menu para encerrar o sistema.
 
 O sistema oferece funcionalidades para adicionar, remover e editar itens e usuários. Ele também fornece opções para pesquisar itens na biblioteca e emitir relatórios sobre os itens e usuários. O sistema foi implementado usando conceitos de programação orientada a objetos, como herança e interfaces, e foi testado usando a estrutura de teste JUnit.
-
-O objetivo do projeto é fornecer uma solução eficiente e fácil de usar para gerenciar uma biblioteca, melhorando a organização dos itens e a experiência dos usuários. O sistema é flexível e pode ser facilmente adaptado para atender às necessidades específicas de diferentes bibliotecas. Além disso, o código é bem documentado e segue as melhores práticas de codificação, facilitando a manutenção e a expansão futuras do sistema.
