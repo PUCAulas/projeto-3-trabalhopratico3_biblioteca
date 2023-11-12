@@ -1,5 +1,5 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12568200&assignment_repo_type=AssignmentRepo)
-# Nome do projeto
+# Biblioteca
 
 O objetivo deste projeto é desenvolver um sistema de gerenciamento de biblioteca em Java. O sistema deve ser capaz de gerenciar informações de vários tipos de itens, incluindo livros, teses, revistas, CDs e DVDs. Além disso, o sistema deve ser capaz de lidar com o empréstimo desses itens para os usuários da biblioteca, levando em consideração várias restrições, como a disponibilidade do item e o número máximo de itens que um usuário pode pegar emprestado ao mesmo tempo.
 
