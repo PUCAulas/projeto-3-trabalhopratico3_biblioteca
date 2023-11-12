@@ -20,5 +20,18 @@ public abstract class Item {
     public String getTipo() {
         return this.getClass().getSimpleName();
     }
-}
 
+    public void emprestar() throws EmprestimoException {
+        if (this.disponivel) {
+            this.disponivel = false;
+            this.vezesEmprestado++;
+        } else {
+            throw new EmprestimoException("O item não está disponível para empréstimo.");
+        }
+    }
+
+    public void devolver() {
+        this.disponivel = true;
+    }
+
+}

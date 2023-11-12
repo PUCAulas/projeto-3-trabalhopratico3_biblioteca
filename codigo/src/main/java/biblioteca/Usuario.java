@@ -2,7 +2,6 @@ package biblioteca;
 
 import java.util.*;
 
-
 class Usuario {
     private int id = 0;
     private static int proxID = 0;
@@ -16,7 +15,7 @@ class Usuario {
         this.cpf = cpf;
     }
 
-     public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -32,7 +31,7 @@ class Usuario {
         this.nome = nome;
     }
 
-      public int getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
@@ -42,5 +41,14 @@ class Usuario {
 
     public boolean podeEmprestar() {
         return emprestimos.size() < 3;
+    }
+
+    public void emprestarItem(Item item) throws EmprestimoException {
+        if (this.podeEmprestar()) {
+            item.emprestar();
+            this.emprestimos.add(item);
+        } else {
+            throw new EmprestimoException("O usuário não pode emprestar mais itens.");
+        }
     }
 }

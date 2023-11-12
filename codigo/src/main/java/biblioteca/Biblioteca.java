@@ -35,7 +35,8 @@ public class Biblioteca {
     public boolean emprestarItem(String titulo, String nomeUsuario) throws Exception {
         Item item = itens.get(titulo);
         Usuario usuario = usuarios.get(nomeUsuario);
-        if (item != null && usuario != null && item instanceof Emprestavel && item.disponivel && usuario.podeEmprestar()) {
+        if (item != null && usuario != null && item instanceof Emprestavel && item.disponivel
+                && usuario.podeEmprestar()) {
             item.disponivel = false;
             item.vezesEmprestado++;
             usuario.emprestimos.add(item);
@@ -43,19 +44,17 @@ public class Biblioteca {
         }
         throw new Exception("O item não está disponível para empréstimo.");
     }
-    
 
-    public boolean devolverItem(String titulo, String nomeUsuario) throws Exception {
+    public void devolverItem(String titulo, String nomeUsuario) throws Exception {
         Item item = itens.get(titulo);
         Usuario usuario = usuarios.get(nomeUsuario);
         if (item != null && usuario != null && usuario.emprestimos.contains(item)) {
-            item.disponivel = true;
+            item.devolver();
             usuario.emprestimos.remove(item);
-            return true;
+        } else {
+            throw new Exception("Não foi possível devolver o item.");
         }
-        throw new Exception("Não foi possível devolver o item.");
     }
-    
 
     public List<Item> listarItens() {
         List<Item> listaItens = new ArrayList<>(itens.values());
@@ -115,17 +114,6 @@ public class Biblioteca {
             for (Item item : emprestimos) {
                 System.out.println(item.titulo);
             }
-        }
-    }
-
-    public void popularBiblioteca() {
-        for (int i = 1; i <= 3; i++) {
-            adicionarItem(new Livro("Livro " + i, "Autor " + i, 2000 + i));
-            adicionarItem(new Tese("Tese " + i, "Autor " + i, 2000 + i));
-            adicionarItem(new Revista("Revista " + i, "Autor " + i, 2000 + i));
-            adicionarItem(new CD("CD " + i, "Autor " + i, 2000 + i));
-            adicionarItem(new DVD("DVD " + i, "Autor " + i, 2000 + i));
-            adicionarUsuario(new Usuario("Usuário " + i, 122));
         }
     }
 

@@ -6,7 +6,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Biblioteca biblioteca = new Biblioteca();
-        //biblioteca.popularBiblioteca();
+        String titulo, autor;
+        int ano;
+        // biblioteca.popularBiblioteca();
 
         while (true) {
             try {
@@ -27,12 +29,12 @@ public class Main {
 
                 System.out.println("Escolha uma opção:");
                 int opcao = scanner.nextInt();
-                //scanner.nextLine();  // Consumir a nova linha
+                // scanner.nextLine(); // Consumir a nova linha
 
                 switch (opcao) {
 
-                     case 1:
-                     scanner = new Scanner(System.in);
+                    case 1:
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o nome do usuário:");
                         String nome = scanner.nextLine();
                         System.out.println("Digite o nome do usuário:");
@@ -40,40 +42,91 @@ public class Main {
                         biblioteca.adicionarUsuario(new Usuario(nome, cpf));
                         break;
                     case 2:
-                     scanner = new Scanner(System.in); 
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o nome do usuário:");
                         nome = scanner.nextLine();
                         biblioteca.removerUsuario(nome);
                         break;
                     case 3:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o nome do usuário:");
                         nome = scanner.nextLine();
                         System.out.println("Digite o novo nome do usuário:");
                         String novoNome = scanner.nextLine();
-                         System.out.println("Digite o nome do usuário:");
+                        System.out.println("Digite o nome do usuário:");
                         cpf = scanner.nextInt();
                         biblioteca.editarUsuario(nome, new Usuario(novoNome, cpf));
                         break;
                     case 4:
-                    scanner = new Scanner(System.in);
-                        System.out.println("Digite o título do livro:");
-                        String titulo = scanner.nextLine();
-                        System.out.println("Digite o autor do livro:");
-                        String autor = scanner.nextLine();
-                        System.out.println("Digite o ano do livro:");
-                        int ano = scanner.nextInt();
-                        scanner.nextLine();  // Consumir a nova linha
-                        biblioteca.adicionarItem(new Livro(titulo, autor, ano));
+                        scanner = new Scanner(System.in);
+                        System.out.println(
+                                "Selecione qual tipo de livro deseja cadastrar: (1 - Livro, 2 - Tese, 3 - Revista, 4 - CD, 5 - DVD)");
+                        int selecaoTipo = scanner.nextInt();
+                        switch (selecaoTipo) {
+                            case 1:
+                                System.out.println("Digite o título do livro: ");
+                                titulo = scanner.nextLine();
+                                System.out.println("Digite o autor do livro: ");
+                                autor = scanner.nextLine();
+                                System.out.println("Digite o ano do livro: ");
+                                ano = scanner.nextInt();
+                                scanner.nextLine(); // Consumir a nova linha
+                                biblioteca.adicionarItem(new Livro(titulo, autor, ano));
+                                break;
+                            case 2:
+                                System.out.println("Digite o título da tese: ");
+                                titulo = scanner.nextLine();
+                                System.out.println("Digite o autor da tese: ");
+                                autor = scanner.nextLine();
+                                System.out.println("Digite o ano da tese: ");
+                                ano = scanner.nextInt();
+                                scanner.nextLine(); // Consumir a nova linha
+                                biblioteca.adicionarItem(new Tese(titulo, autor, ano));
+                                break;
+                            case 3:
+                                System.out.println("Digite o título da revista: ");
+                                titulo = scanner.nextLine();
+                                System.out.println("Digite o autor da revista: ");
+                                autor = scanner.nextLine();
+                                System.out.println("Digite o ano da revista: ");
+                                ano = scanner.nextInt();
+                                scanner.nextLine(); // Consumir a nova linha
+                                biblioteca.adicionarItem(new Revista(titulo, autor, ano));
+                                break;
+                            case 4:
+                                System.out.println("Digite o título do CD: ");
+                                titulo = scanner.nextLine();
+                                System.out.println("Digite o autor do CD: ");
+                                autor = scanner.nextLine();
+                                System.out.println("Digite o ano do CD: ");
+                                ano = scanner.nextInt();
+                                scanner.nextLine(); // Consumir a nova linha
+                                biblioteca.adicionarItem(new CD(titulo, autor, ano));
+                                break;
+                            case 5:
+                                System.out.println("Digite o título do DVD: ");
+                                titulo = scanner.nextLine();
+                                System.out.println("Digite o autor do DVD: ");
+                                autor = scanner.nextLine();
+                                System.out.println("Digite o ano do DVD: ");
+                                ano = scanner.nextInt();
+                                scanner.nextLine(); // Consumir a nova linha
+                                biblioteca.adicionarItem(new DVD(titulo, autor, ano));
+                                break;
+
+                            default:
+                                System.out.println("Selecione um numero valido!");
+                                break;
+                        }
                         break;
                     case 5:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
                         biblioteca.removerItem(titulo);
                         break;
                     case 6:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
                         System.out.println("Digite o novo título do livro:");
@@ -82,12 +135,12 @@ public class Main {
                         String novoAutor = scanner.nextLine();
                         System.out.println("Digite o novo ano do livro:");
                         int novoAno = scanner.nextInt();
-                        scanner.nextLine();  // Consumir a nova linha
+                        scanner.nextLine(); // Consumir a nova linha
                         biblioteca.editarItem(titulo, new Livro(novoTitulo, novoAutor, novoAno));
                         break;
-                   
+
                     case 7:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
                         System.out.println("Digite o nome do usuário:");
@@ -99,33 +152,34 @@ public class Main {
                         }
                         break;
                     case 8:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o título do livro:");
                         titulo = scanner.nextLine();
                         System.out.println("Digite o nome do usuário:");
                         nomeUsuario = scanner.nextLine();
-                        if (biblioteca.devolverItem(titulo, nomeUsuario)) {
+                        try {
+                            biblioteca.devolverItem(titulo, nomeUsuario);
                             System.out.println("Livro devolvido com sucesso!");
-                        } else {
-                            System.out.println("Não foi possível devolver o livro.");
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
                         }
                         break;
                     case 9:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         List<Item> listaItens = biblioteca.listarItens();
                         for (Item item : listaItens) {
                             System.out.println(item.titulo + " - " + item.autor + " - " + item.ano);
                         }
                         break;
                     case 10:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         List<Usuario> listaUsuarios = biblioteca.listarUsuarios();
                         for (Usuario usuario : listaUsuarios) {
                             System.out.println(usuario.nome);
                         }
                         break;
                     case 11:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o termo de pesquisa:");
                         String termo = scanner.nextLine();
                         System.out.println("Digite o tipo de pesquisa (titulo, autor, ano, tipo):");
@@ -139,13 +193,13 @@ public class Main {
                         biblioteca.emitirRelatorioPorItem();
                         break;
                     case 13:
-                     scanner = new Scanner(System.in);
+                        scanner = new Scanner(System.in);
                         System.out.println("Digite o nome do usuário:");
                         nomeUsuario = scanner.nextLine();
                         biblioteca.emitirRelatorioPorUsuario(nomeUsuario);
                         break;
                     case 0:
-                    System.out.println("Saindo...");
+                        System.out.println("Saindo...");
                         scanner.close();
                     default:
                         System.out.println("Opção inválida. Por favor, tente novamente.");
@@ -153,7 +207,7 @@ public class Main {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, tente novamente.");
-                scanner.nextLine();  // Consumir a nova linha
+                scanner.nextLine(); // Consumir a nova linha
             } catch (EmprestimoException e) {
                 System.out.println(e.getMessage());
             }
