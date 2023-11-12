@@ -2,4 +2,6 @@
 
 Mantenha neste diretório todo o código fonte do projeto. 
 
-Se necessário, descreva neste arquivo aspectos relevantes da estrutura de diretórios criada para organização do código.
+Pasta com o sistema: main/java/biblioteca
+
+Pasta com os testes: test/java/biblioteca
